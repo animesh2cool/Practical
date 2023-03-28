@@ -1,69 +1,74 @@
 import java.util.Scanner;
+
 public class ATM {
-    static int balance = 10000;
-    private static void Login() {
-        String Username;
-        String Password;
-
-        Username = "animesh";
-        Password = "1234";
-
-        Scanner input1 = new Scanner(System.in);
-        System.out.println("Enter Username : ");
-        String username = input1.next();
-
-        Scanner input2 = new Scanner(System.in);
-        System.out.println("Enter Password : ");
-        String password = input2.next();
-
-        if (username.equals(Username) && password.equals(Password)) {
-
-            System.out.println("Welcome! You are successfully Logged In");
-        }
-        else {
-            System.out.println("Invalid Username & Password!");
-        }
-    }
-    private static void Withdraw() {
-        int amount;
-        Scanner input = new Scanner(System.in);
-        System.out.println("Please Enter Amount to Withdraw : ");
-        amount = input.nextInt();
-        if (amount<balance) {
-            int new_balance = balance - amount;
-            System.out.println("Your Current Balance is :" + new_balance);
-        }
-        else {
-            System.out.println("Please Enter amount below :"+balance);
-        }
-    }
-    private static void Deposit() {
-        int amount;
-        Scanner input = new Scanner(System.in);
-        System.out.println("Please Enter Amount to Deposit : ");
-        amount = input.nextInt();
-        int new_balance = balance + amount;
-        System.out.println("Your Current Balance is :" + new_balance);
-    }
     public static void main(String[] args) {
         while (true) {
-            System.out.println("Press 1 for log in");
-            System.out.println("Press 2 for withdraw");
-            System.out.println("press 3 for deposit");
-            Scanner input = new Scanner(System.in);
-            int c = input.nextInt();
-
-            if (c==1) {
-                ATM.Login();
+            System.out.println("Enter 1 for login");
+            System.out.println("Enter 0 for Exit");
+            Scanner sc = new Scanner(System.in);
+            int c = sc.nextInt();
+            if (c== 1) {
+                ATM.login();
             }
-            else if (c==2) {
-                ATM.Withdraw();
-            }
-            else if (c==3) {
-                ATM.Deposit();
+            else if (c==0){
+                break;
             }
             else {
-                System.out.println("Please Try Again");
+                System.out.println("Invalid Input Please Try Again");
+            }
+        }
+    }
+
+    private static void login() {
+        float Balance;
+        Balance = 10000;
+        String userid;
+        String password;
+
+        userid = "animesh123";
+        password = "12345678";
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please Enter User ID");
+        String user = sc.nextLine();
+        System.out.println("Please Enter PassWord");
+        String pass = sc.nextLine();
+        while (true) {
+            if (user.equals(userid) && pass.equals(password)) {
+                System.out.println("Please Enter 1 for Check Balance");
+                System.out.println("Please Enter 2 for Deposit");
+                System.out.println("Please Enter 3 for Withdraw");
+                System.out.println("Please Enter 0 for Exit");
+                int c = sc.nextInt();
+                if (c == 2) {
+                    System.out.println("Your Current Balance is :"+Balance);
+                    System.out.println("Please Enter Amount to Deposit");
+                    float add_bal = sc.nextFloat();
+                    float new_bal = Balance + add_bal;
+                    System.out.println("Your Updated Balance is : " + new_bal);
+                }
+                else if (c == 3) {
+                    System.out.println("Your Current Balance is :"+Balance);
+                    System.out.println("Please Enter Amount to Withdraw");
+                    float add_bal2 = sc.nextFloat();
+                    if (add_bal2 < Balance) {
+                        float new_bal2 = Balance - add_bal2;
+                        System.out.println("Your Updated Balance is : " + new_bal2);
+                    } else {
+                        System.out.println("You have insufficient Amount");
+                    }
+                }
+                else if(c==1) {
+                    System.out.println("Your Current Balance is :"+Balance);
+                }
+                else if(c==0) {
+                    break;
+                }
+                else {
+                    System.out.println("Invalid Input");
+                }
+            } else {
+                System.out.println("You have Enter Wrong ID or Password");
+                login();
             }
         }
     }
