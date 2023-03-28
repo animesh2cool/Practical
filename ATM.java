@@ -44,6 +44,7 @@ public class ATM {
                     System.out.println("Please Enter Amount to Deposit");
                     float add_bal = sc.nextFloat();
                     float new_bal = Balance + add_bal;
+                    Balance= new_bal;
                     System.out.println("Your Updated Balance is : " + new_bal);
                 }
                 else if (c == 3) {
@@ -52,6 +53,7 @@ public class ATM {
                     float add_bal2 = sc.nextFloat();
                     if (add_bal2 < Balance) {
                         float new_bal2 = Balance - add_bal2;
+                        Balance= new_bal2;
                         System.out.println("Your Updated Balance is : " + new_bal2);
                     } else {
                         System.out.println("You have insufficient Amount");
